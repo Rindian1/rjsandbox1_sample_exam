@@ -135,6 +135,43 @@ Current HTML structure:
 </section>
 ```
 
+## 5. Mobile Layout Adjustment
+**Problem:** The recipe cards should switch from horizontal scroll to vertical stack layout on mobile devices for better usability.
+
+**Analysis:**
+- Currently, the cards use horizontal scrolling on all screen sizes
+- Mobile users typically prefer vertical scrolling for better one-handed use
+- The breakpoint for mobile is set at 768px in the existing media queries
+
+**Solution Implemented:**
+1. Modified the mobile media query to change the layout:
+   - Set cards to stack vertically on mobile
+   - Adjusted card width to be full width on small screens
+   - Maintained horizontal scroll behavior on larger screens
+
+2. Key CSS changes:
+   ```css
+   @media (max-width: 768px) {
+       .grid-4-col {
+           display: flex;
+           flex-direction: column;
+           gap: 16px;
+           padding: 0 16px;
+       }
+       
+       .card {
+           width: 100%;
+           margin-bottom: 16px;
+       }
+   }
+   ```
+
+**Verification Steps:**
+1. Open the page on a mobile device or use browser dev tools
+2. Verify cards stack vertically when viewport width is ≤ 768px
+3. Ensure horizontal scroll returns on larger screens
+4. Check that all content remains accessible and readable
+
 ## Additional Notes
 - The application uses SQLite for the database
 - Image uploads are handled and stored in `static/images/uploads/`

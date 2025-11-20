@@ -378,13 +378,19 @@ body {
 /* ------- RESPONSIVE DESIGN FOR MOBILE ------- */
 /* These styles apply when the screen is smaller than 768 pixels wide (phones and tablets) */
 @media (max-width: 768px) {
-    /* Adjust horizontal scroll spacing on mobile */
+    /* Switch to vertical layout on mobile */
     .grid-4-col {
-        padding: 0 12px 16px;            /* Slightly smaller gutters */
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 0 16px;
+        overflow-x: visible;             /* Disable horizontal scrolling */
     }
 
     .card {
-        flex: 0 0 80vw;                  /* Wider cards for narrow screens */
+        width: 100%;                    /* Full width cards */
+        margin-bottom: 16px;            /* Space between stacked cards */
+        flex: 0 0 auto;                 /* Allow natural height */
     }
 
     /* Makes recipe content stack vertically */
