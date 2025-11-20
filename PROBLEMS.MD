@@ -31,34 +31,47 @@ Current CSS:
 }
 ```
 
-## 2. Missing Images for Curry and Adobo
-**Problem:** The image references for 'curry' and 'adobo' don't work, displaying a broken image icon.
+## 2. Missing Images for Kare-Kare and Adobo
+**Problem:** The image references for 'Kare-Kare' and 'Adobo' don't work, displaying a broken image icon.
 
 **Analysis:**
 - The issue is in the database records for these recipes
+- The correct image files exist but may not be properly linked:
+  - Kare-Kare: `static/images/uploads/kare-kare_5e5d98d4.jpg`
+  - Adobo: `static/images/uploads/Adobo_DSCF4391_60983fbd.jpg`
 - In `app.py`, if no image is found, it falls back to 'images/about.webp'
-- The problem could be:
-  1. The image files are missing from the static/images directory
-  2. The `image_path` in the database is incorrect
-  3. The files have incorrect permissions
+- The problem is likely that the `image_path` in the database doesn't match the actual file paths
 
-**Files to Check:**
-- Database records for 'curry' and 'adobo' recipes
-- `static/images/` directory for the actual image files
-- `app.py` - image handling logic
+**Solution Required:**
+1. Update the database records to point to the correct image paths:
+   - Kare-Kare: `images/uploads/kare-kare_5e5d98d4.jpg`
+   - Adobo: `images/uploads/Adobo_DSCF4391_60983fbd.jpg`
 
-**AI Prompt:**
-```
-Help fix the broken image references for 'curry' and 'adobo' recipes. The solution should:
-1. Check the database for the current image_path values
-2. Verify if the image files exist in the static/images directory
-3. If files are missing, suggest appropriate filenames based on recipe names
-4. Provide SQL to update the database with correct paths
-5. Ensure proper file permissions (644 for files, 755 for directories)
+2. Verify file permissions:
+   ```bash
+   chmod 644 static/images/uploads/kare-kare_5e5d98d4.jpg
+   chmod 644 static/images/uploads/Adobo_DSCF4391_60983fbd.jpg
+   chmod 755 static/images/uploads/
+   ```
 
-Example SQL to check current data:
-SELECT id, name, image_path FROM recipes WHERE name LIKE '%curry%' OR name LIKE '%adobo%';
-```
+3. SQL to update the database:
+   ```sql
+   -- For Kare-Kare
+   UPDATE recipes 
+   SET image_path = 'images/uploads/kare-kare_5e5d98d4.jpg'
+   WHERE name LIKE '%kare-kare%' OR name LIKE '%kare kare%';
+   
+   -- For Adobo
+   UPDATE recipes 
+   SET image_path = 'images/uploads/Adobo_DSCF4391_60983fbd.jpg'
+   WHERE name LIKE '%adobo%';
+   ```
+
+**Verification Steps:**
+1. Run the SQL queries to update the database
+2. Refresh the recipes page
+3. Verify both Kare-Kare and Adobo show their respective images
+4. Check browser console for any 404 errors
 
 ## 3. Missing Difficulty Column
 **Problem:** The difficulty column doesn't appear in the recipe listings.
