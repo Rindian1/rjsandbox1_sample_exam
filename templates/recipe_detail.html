@@ -37,7 +37,7 @@
             <div class="recipe-info" data-recipe-id="{{ recipe.id }}" data-category="{{ recipe.category }}">
                 {% if recipe.prep_time %}<span class="prep-time">Prep: {{ recipe.prep_time }}</span>{% endif %}
                 {% if recipe.cook_time %}<span class="cook-time">Cook: {{ recipe.cook_time }}</span>{% endif %}
-                {% if recipe.difficulty %}<span class="difficulty">Difficulty: {{ recipe.difficulty }}</span>{% endif %}
+                {% if recipe.difficulty %}<span class="prep-time">Difficulty: {{ recipe.difficulty }}</span>{% endif %}
             </div>
         </footer>
     </article>

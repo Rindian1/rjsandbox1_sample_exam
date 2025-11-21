@@ -66,6 +66,37 @@ body {
     flex: 0 0 40px;                     /* Ensures partial next card is visible */
 }
 
+/* ------- RECIPE META STYLES ------- */
+.recipe-meta {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.difficulty {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: white;
+}
+
+.difficulty-easy {
+    background-color: #4CAF50; /* Green */
+}
+
+.difficulty-medium {
+    background-color: #FFC107; /* Amber */
+    color: #333;
+}
+
+.difficulty-hard {
+    background-color: #F44336; /* Red */
+}
+
 /* ------- CARD STYLES ------- */
 /* Card component - used for recipe preview boxes */
 .card {
